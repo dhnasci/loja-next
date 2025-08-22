@@ -38,7 +38,7 @@ export class CartController {
         return items.reduce(
             (acc, item) =>
                 acc +
-                ((item.product.promotionalPrice ?? item.product.price) * item.quantity),
+                ((item.product.promotionalPrice ?? item.product.preco) * item.quantity),
             0
         );
     }
