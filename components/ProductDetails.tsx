@@ -18,23 +18,23 @@ export function ProductDetails({ product }: ProductDetailsProps) {
     const hasPromo =
         product.promotionalPrice !== undefined &&
         product.promotionalPrice !== null &&
-        product.promotionalPrice < product.price;
+        product.promotionalPrice < product.preco;
 
     return (
         <Card sx={{ maxWidth: 400, margin: "auto", mt: 4 }}>
             <CardMedia
                 component="img"
                 height="300"
-                image={product.image}
-                alt={product.name}
+                image={product.foto}
+                alt={product.nome}
             />
             <CardContent>
                 <Typography variant="h5" gutterBottom>
-                    {product.name}
+                    {product.nome}
                 </Typography>
 
                 <Typography variant="body2" gutterBottom>
-                    {product.description}
+                    {product.descricao}
                 </Typography>
 
                 <Box mt={2} mb={2}>
@@ -45,7 +45,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
                                 color="text.secondary"
                                 sx={{ textDecoration: 'line-through' }}
                             >
-                                R$ {product.price.toFixed(2)}
+                                R$ {product.preco.toFixed(2)}
                             </Typography>
                             <Typography
                                 variant="h5"
@@ -61,7 +61,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
                             color="primary"
                             fontWeight="bold"
                         >
-                            R$ {product.price.toFixed(2)}
+                            R$ {product.preco.toFixed(2)}
                         </Typography>
                     )}
                 </Box>

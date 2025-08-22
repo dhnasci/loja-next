@@ -40,8 +40,7 @@ export const CartProvider: React.FC<{children: React.ReactNode}> = ({children}) 
         await refreshCart();
     };
 
-    const subtotal = cartItems.reduce((sum, item) =>
-        sum + ((item.product.promotionalPrice ?? item.product.price) * item.quantity), 0);
+    const subtotal = CartController.computeSubtotal(cartItems);
 
     return (
         <CartContext.Provider value={{

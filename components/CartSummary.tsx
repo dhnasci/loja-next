@@ -11,7 +11,16 @@ export function CartSummary({ open, onClose }: CartSummaryProps) {
     const listItems = cartItems.length === 0
         ? [
             <ListItem key="empty">
-                <ListItemText primary="Seu carrinho está vazio." />
+                <ListItemText
+                    primary={
+                    <Typography color="text.secondary" sx={
+                        {textAlign: 'center',
+                        width: '100%'}
+                    }>
+                    Seu carrinho está vazio
+                    </Typography>
+                    }
+                />
             </ListItem>
         ]
         : cartItems.map(item => (
@@ -28,8 +37,8 @@ export function CartSummary({ open, onClose }: CartSummaryProps) {
                       }
             >
                 <ListItemText
-                    primary={item.product.name}
-                    secondary={`Qtd: ${item.quantity} – R$ ${(item.product.promotionalPrice ?? item.product.price).toFixed(2)}`}
+                    primary={item.product.nome}
+                    secondary={`Qtd: ${item.quantity} – R$ ${(item.product.promotionalPrice ?? item.product.preco).toFixed(2)}`}
                 />
             </ListItem>
         ));
