@@ -7,6 +7,8 @@ import { CartSummary } from '../../components/CartSummary';
 import { IconButton } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3010";
+
 export default function ProductPage() {
     const [product, setProduct] = useState<Product | null>(null);
     const [loading, setLoading] = useState(true);

@@ -3,6 +3,8 @@ import { Typography, Button, Card, CardContent, CardMedia, Box } from '@mui/mate
 import { Product } from '../models/Product';
 import { useCart } from '../context/CartContext';
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
 type ProductDetailsProps = { product: Product };
 
 export function ProductDetails({ product }: ProductDetailsProps) {
@@ -20,12 +22,18 @@ export function ProductDetails({ product }: ProductDetailsProps) {
         product.promotionalPrice !== null &&
         product.promotionalPrice < product.preco;
 
+    // Monta a URL da foto com o prefixo do backend se necessário
+    let fotoUrl = product.foto;
+    if (fotoUrl && !fotoUrl.startsWith("http")) {
+        fotoUrl = `${API_BASE_URL}${fotoUrl.startsWith("/") ? "" : "/"}${fotoUrl}`;
+    }
+
     return (
         <Card sx={{ maxWidth: 400, margin: "auto", mt: 4 }}>
             <CardMedia
                 component="img"
                 height="300"
-                image={product.foto}
+                image={fotoUrl}
                 alt={product.nome}
             />
             <CardContent>
