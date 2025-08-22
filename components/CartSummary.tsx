@@ -11,19 +11,18 @@ export function CartSummary({ open, onClose }: CartSummaryProps) {
     const listItems = cartItems.length === 0
         ? [
             <ListItem key="empty">
-                <ListItemText
-                    primary={
-                        <Typography color="text.secondary" sx={{ textAlign: 'center', width: '100%' }}>
-                            Seu carrinho está vazio.
-                        </Typography>
-                    }
-                />
+                <ListItemText primary="Seu carrinho está vazio." />
             </ListItem>
         ]
         : cartItems.map(item => (
-            <ListItem key={item.product.id}
-                      secondaryAction={
-                          <IconButton edge="end" aria-label="delete" onClick={() => removeFromCart(item.product.id)}>
+            <ListItem
+                key={item.product.id}
+                secondaryAction={
+                          <IconButton
+                              edge="end"
+                              aria-label="delete"
+                              onClick={() => removeFromCart(item.product.id)}
+                          >
                               <DeleteIcon />
                           </IconButton>
                       }

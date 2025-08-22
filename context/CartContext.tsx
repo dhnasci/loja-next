@@ -1,14 +1,14 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 import { CartController } from '../controllers/CartController';
 import { Product } from '../models/Product';
 import { CartItem } from '../models/CartItem';
 
 interface CartContextProps {
-    controller: CartController;
     cartItems: CartItem[];
-    addToCart: (product: Product) => void;
-    removeFromCart: (productId: string) => void;
+    addToCart: (product: Product) => Promise<void>;
+    removeFromCart: (productId: string) => Promise<void>;
     subtotal: number;
+    refreshCart: () => Promise<void>;
 }
 
 const CartContext = createContext<CartContextProps | undefined>(undefined);
@@ -17,29 +17,43 @@ export const CartProvider: React.FC<{children: React.ReactNode}> = ({children}) 
     const controller = new CartController();
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-    const addToCart = (product: Product) => {
-        controller.addToCart(product);
-        setCartItems([...controller.getCartItems()]);
+    useEffect(() => {
+        refreshCart();
+    }, []);
+
+    const refreshCart = async () => {
+        try {
+            const itens = await controller.getCartItems();
+            setCartItems(itens);
+        } catch (_) {
+            setCartItems([]);
+        }
     };
 
-    const removeFromCart = (id: string) => {
-        controller.removeFromCart(id);
-        setCartItems([...controller.getCartItems()]);
+    const addToCart = async (product: Product) => {
+        await controller.addToCart(product);
+        await refreshCart();
     };
 
-    const subtotal = controller.getSubtotal();
+    const removeFromCart = async (productId: string) => {
+        await controller.removeFromCart(productId);
+        await refreshCart();
+    };
+
+    const subtotal = cartItems.reduce((sum, item) =>
+        sum + ((item.product.promotionalPrice ?? item.product.price) * item.quantity), 0);
 
     return (
         <CartContext.Provider value={{
-        controller,
             cartItems,
             addToCart,
             removeFromCart,
-            subtotal
-    }}>
-    {children}
-    </CartContext.Provider>
-);
+            subtotal,
+            refreshCart
+        }}>
+            {children}
+        </CartContext.Provider>
+    );
 };
 
 export function useCart() {
