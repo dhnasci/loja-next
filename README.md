@@ -1,36 +1,119 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# E-commerce Next.js (Página de Produto + Carrinho)
 
-First, run the development server:
+Projeto de e-commerce desenvolvido em Next.js + TypeScript, seguindo MVC, SOLID, integração com API RESTful, e usando Material UI.
+
+---
+
+## Principais Tecnologias e Bibliotecas
+
+- [Next.js](https://nextjs.org/) (React Framework)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Material UI](https://mui.com/) (`@mui/material`, `@mui/icons-material`, `@emotion/react`, `@emotion/styled`)
+- [React Context API](https://react.dev/reference/react/createContext) (para carrinho)
+- Estrutura recomendada: src/ (components, models, controllers, services, context, pages)
+
+---
+
+## Instalação
+
+1. **Clone o repositório:**
+
+```bash
+git clone https://github.com/dhnasci/loja-next.git
+cd loja-next
+```
+
+2. **Instale as dependências principais:**
+
+```bash
+npm install
+```
+ou
+```bash
+yarn
+```
+
+3. **Instale as bibliotecas obrigatórias:**
+
+```bash
+npm install @mui/material @mui/icons-material @emotion/react @emotion/styled
+```
+ou
+```bash
+yarn add @mui/material @mui/icons-material @emotion/react @emotion/styled
+```
+
+---
+
+## Configuração de Ambiente
+
+Crie um arquivo `.env.local` na raiz do projeto e configure a URL do backend:
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:3010
+```
+
+---
+
+## Rodando o Projeto
 
 ```bash
 npm run dev
-# or
+```
+ou
+```bash
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse o sistema em [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Estrutura das Principais Pastas
 
-## Learn More
+```
+src/
+  components/         # Componentes de UI (ProductDetails, CartSummary, etc)
+  controllers/        # Lógicas de integração com a API (CartController, ProductController)
+  services/           # Lógicas de negócio (ProductService, etc)
+  repositories/       # Acesso externo à API (ProductRepository, etc)
+  context/            # Estado global (ex: CartContext)
+  models/             # Tipos/Interfaces TypeScript (Product, CartItem)
+  pages/              # Rotas/Páginas Next.js (ex: index.tsx, product/[id].tsx)
+  styles/             # (globals.css e outros arquivos de estilo)
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Funcionalidades
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Exibe lista de produtos e página de detalhes do produto
+- Permite adicionar produtos ao carrinho (persistência via API)
+- Mostra e gerencia carrinho (resumo lateral/flutuante)
+- Suporte a preço promocional
+- Estrutura pronta para extensão (serviços, repositórios, controllers separados)
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Observações
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Certifique-se de que sua **API REST** (node/Java/spring etc) esteja rodando no endereço configurado (`NEXT_PUBLIC_API_URL`).
+- Estrutura pronta para outros endpoints, é só criar componente/page/Controller/Repository/Service conforme padrão.
+- Se for utilizar upload de imagem como arquivo, será necessário adaptar o form e a API.
+
+---
+
+## Scripts úteis
+
+- `npm run dev` / `yarn dev`: inicia o servidor em modo desenvolvimento
+- `npm run build` / `yarn build`: build de produção
+- `npm start` / `yarn start`: executa o build de produção
+
+---
+
+## Licença
+
+MIT
+
+---
