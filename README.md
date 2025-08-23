@@ -98,7 +98,7 @@ src/
 
 ## Observações
 
-- Certifique-se de que sua **API REST** (node/Java/spring etc) esteja rodando no endereço configurado (`NEXT_PUBLIC_API_URL`).
+- Certifique-se de que sua **API REST** (node) [nodeBack](https://github.com/dhnasci/nodeBack.git) esteja rodando no endereço configurado (`NEXT_PUBLIC_API_URL`).
 - Estrutura pronta para outros endpoints, é só criar componente/page/Controller/Repository/Service conforme padrão.
 - Se for utilizar upload de imagem como arquivo, será necessário adaptar o form e a API.
 
