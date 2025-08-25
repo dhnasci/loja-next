@@ -7,7 +7,6 @@ type CartSummaryProps = { open: boolean; onClose: () => void; };
 export function CartSummary({ open, onClose }: CartSummaryProps) {
     const { cartItems, subtotal, removeFromCart } = useCart();
 
-    console.log('cartItems :: ',cartItems);
     // Crie um array contendo apenas ListItem (com ou sem itens).
     const listItems = cartItems.length === 0
         ? [
