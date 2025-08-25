@@ -31,7 +31,7 @@ export function CartSummary({ open, onClose }: CartSummaryProps) {
                           <IconButton
                               edge="end"
                               aria-label="delete"
-                              onClick={() => removeFromCart(item.product.id)}
+                              onClick={() => removeFromCart(item.product)}
                           >
                               <DeleteIcon />
                           </IconButton>
