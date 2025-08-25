@@ -5,7 +5,7 @@ import { useCart } from '../context/CartContext';
 type CartSummaryProps = { open: boolean; onClose: () => void; };
 
 export function CartSummary({ open, onClose }: CartSummaryProps) {
-    const { cartItems, removeFromCart } = useCart();
+    const { cartItems, subtotal, removeFromCart } = useCart();
 
     console.log('cartItems :: ',cartItems);
     // Crie um array contendo apenas ListItem (com ou sem itens).
@@ -44,14 +44,14 @@ export function CartSummary({ open, onClose }: CartSummaryProps) {
             </ListItem>
         ));
 
-    // // O subtotal sempre é exibido
-    // listItems.push(
-    //     <ListItem key="subtotal">
-    //         <Typography variant="subtitle1" sx={{ ml: 'auto', fontWeight: 'bold' }}>
-    //             Subtotal: R$ {subtotal.toFixed(2)}
-    //         </Typography>
-    //     </ListItem>
-    // );
+    // O subtotal sempre é exibido
+    listItems.push(
+        <ListItem key="subtotal">
+            <Typography variant="subtitle1" sx={{ ml: 'auto', fontWeight: 'bold' }}>
+                Subtotal: R$ {subtotal.toFixed(2)}
+            </Typography>
+        </ListItem>
+    );
 
     return (
         <Drawer anchor="right" open={open} onClose={onClose}>

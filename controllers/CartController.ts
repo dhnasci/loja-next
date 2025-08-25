@@ -42,12 +42,12 @@ export class CartController {
     }
 
     // (Opcional): Calcular subtotal a partir do array de CartItem recebido
-    // static computeSubtotal(items: CartItem[]): number {
-    //     return items.reduce(
-    //         (acc, item) =>
-    //             acc +
-    //             ((item.product.promotionalPrice ?? item.product.preco) * item.quantity),
-    //         0
-    //     );
-    // }
+    static computeSubtotal(items: CartItem[]): number {
+        return items.reduce(
+            (acc, item) =>
+                acc +
+                ((item.product.promotionalPrice ?? item.product.preco) * item.quantity),
+            0
+        );
+    }
 }

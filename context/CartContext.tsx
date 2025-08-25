@@ -40,13 +40,14 @@ export const CartProvider: React.FC<{children: React.ReactNode}> = ({children}) 
         await refreshCart();
     };
 
-    // const subtotal = CartController.computeSubtotal(cartItems);
+    const subtotal = CartController.computeSubtotal(cartItems);
 
     return (
         <CartContext.Provider value={{
             cartItems,
             addToCart,
             removeFromCart,
+            subtotal,
             refreshCart
         }}>
             {children}
