@@ -47,10 +47,10 @@ export default function Home() {
                             fotoUrl = `${API_BASE_URL}${fotoUrl.startsWith("/") ? "" : "/"}${fotoUrl}`;
                         }
                         return (
-                            <Grid item xs={12} sm={6} md={4} key={product.id}>
+                            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={product.id}>
                                 <Card>
-                                    <Link href={`/product/${product.id}`} passHref>
-                                        <CardActionArea component="a">
+                                    <Link href={`/product/${product.id}`} style={{textDecoration: "none"}}>
+                                        <CardActionArea>
                                             <CardMedia
                                                 component="img"
                                                 height="180"
