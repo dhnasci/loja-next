@@ -6,7 +6,7 @@ import { CartItem } from '../models/CartItem';
 interface CartContextProps {
     cartItems: CartItem[];
     addToCart: (product: Product) => Promise<void>;
-    removeFromCart: (productId: string) => Promise<void>;
+    removeFromCart: (product: Product) => Promise<void>;
     subtotal: number;
     refreshCart: () => Promise<void>;
 }
@@ -35,8 +35,8 @@ export const CartProvider: React.FC<{children: React.ReactNode}> = ({children}) 
         await refreshCart();
     };
 
-    const removeFromCart = async (productId: string) => {
-        await controller.removeFromCart(productId);
+    const removeFromCart = async (product: Product) => {
+        await controller.removeFromCart(product);
         await refreshCart();
     };
 

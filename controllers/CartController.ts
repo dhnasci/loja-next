@@ -18,9 +18,7 @@ export class CartController {
 
     // Adiciona um item ao carrinho
     async addToCart(product: Product): Promise<CartItem[]> {
-        let url = `${API_BASE_URL}/api/cart/add`;
-        console.log('path:',url);
-        const response = await fetch(url, {
+        const response = await fetch(`${API_BASE_URL}/api/cart/add`, {
             method: 'POST',
             credentials: 'include',
             headers: { 'Content-Type': 'application/json' },
@@ -31,8 +29,16 @@ export class CartController {
         return await response.json();
     }
 
-    removeFromCart(productId: string) {
-        this.items = this.items.filter(item => item.product.id !== productId);
+    async removeFromCart(product: Product) {
+        const response = await fetch(`${API_BASE_URL}/api/cart`, {
+            method: 'DELETE',
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ productId: product.id })
+        });
+        if (!response.ok) throw new Error('Erro ao apagar produto ao carrinho');
+        // Pode retornar o carrinho atualizado:
+        return await response.json();
     }
 
     // (Opcional): Calcular subtotal a partir do array de CartItem recebido
