@@ -18,7 +18,9 @@ export class CartController {
 
     // Adiciona um item ao carrinho
     async addToCart(product: Product): Promise<CartItem[]> {
-        const response = await fetch(`${API_BASE_URL}/api/cart/add`, {
+        let url = `${API_BASE_URL}/api/cart/add`;
+        console.log('path:',url);
+        const response = await fetch(url, {
             method: 'POST',
             credentials: 'include',
             headers: { 'Content-Type': 'application/json' },
@@ -34,12 +36,12 @@ export class CartController {
     }
 
     // (Opcional): Calcular subtotal a partir do array de CartItem recebido
-    static computeSubtotal(items: CartItem[]): number {
-        return items.reduce(
-            (acc, item) =>
-                acc +
-                ((item.product.promotionalPrice ?? item.product.preco) * item.quantity),
-            0
-        );
-    }
+    // static computeSubtotal(items: CartItem[]): number {
+    //     return items.reduce(
+    //         (acc, item) =>
+    //             acc +
+    //             ((item.product.promotionalPrice ?? item.product.preco) * item.quantity),
+    //         0
+    //     );
+    // }
 }
