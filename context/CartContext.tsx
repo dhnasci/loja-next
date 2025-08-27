@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, {createContext, useState, useContext, useEffect, useMemo} from 'react';
 import { CartController } from '../controllers/CartController';
 import { Product } from '../models/Product';
 import { CartItem } from '../models/CartItem';
@@ -42,14 +42,17 @@ export const CartProvider: React.FC<{children: React.ReactNode}> = ({children}) 
 
     const subtotal = CartController.computeSubtotal(cartItems);
 
-    return (
-        <CartContext.Provider value={{
+    const obj = useMemo( () => (
+        {
             cartItems,
             addToCart,
             removeFromCart,
             subtotal,
             refreshCart
-        }}>
+        }
+    ), [] );
+    return (
+        <CartContext.Provider value={obj}>
             {children}
         </CartContext.Provider>
     );
